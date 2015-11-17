@@ -4,13 +4,34 @@
     <meta charset="utf-8">
     <title>WDI</title>
     <link rel="stylesheet" href="styles.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <script src="movie.js"></script>
   </head>
   <body>
     <main>
-      <form action="">
-        <label for="movie_title">Movie Title</label>
-        <input id="movie_title" type="text" placeholder="Vertigo">
-      </form>
+      <div class="container">
+        <section id="header">
+          <h1>Movie Searcher</h1>
+        </section>
+        <section id="search">
+          <form action="">
+            <input id="movie" type="text" placeholder="Title">
+            <button id="search">Search</button>
+          </form>
+        </section>
+
+        <section id="results">
+          <div id="results">
+            <ul id="results">
+              <!-- Generated search results -->
+            </ul>
+          </div>
+          <div id="details">
+
+          </div>
+        </section>
+      </div>
     </main>
   </body>
 </html>

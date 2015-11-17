@@ -1,4 +1,5 @@
-/*RESET*/
+/*RESET, DEFAULTS, AND CLEARFIX*/
+/*******************************/
 html, body, h1, h2, h3, p, div, label, form,
 ul, li, button, a, section, nav, main, input, textarea {
   border: 0;
@@ -19,6 +20,108 @@ ul, li, button, a, section, nav, main, input, textarea {
   display: block;
 }
 
+ul {
+  list-style: none;
+}
+
 body {
+  background: #f3f3f3;
   font-family: sans-serif;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+div.container {
+  width: 900px;
+  height: auto;
+  margin: 0 auto;
+  /*background: white;*/
+}
+
+h1 {
+  font-size: 72px;
+}
+
+main {
+
+}
+
+/***********************/
+/*HEADER SECTION STYLES*/
+/***********************/
+
+section#header {
+  padding-top: 100px;
+  text-align: center;
+}
+
+/***********************/
+/*SEARCH SECTION STYLES*/
+/***********************/
+
+section#search {
+  margin-top: 100px;
+  padding: 0 20px;
+
+}
+
+input#movie {
+  font-size: 48px;
+  border: 1px black solid;
+  padding: 5px 10px;
+  width: 500px;
+  background: white;
+  border-radius: 3px;
+}
+
+button#search {
+  /*margin-top: 20px;*/
+  position: relative;
+  bottom: 5px;
+  font-size: 36px;
+  background: #57C241;
+  color: white;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+  width: 300px;
+}
+
+button#search:hover {
+  background: #48A136;
+}
+
+
+
+
+/************************/
+/*RESULTS SECTION STYLES*/
+/************************/
+
+
+section#results {
+
+}
+
+div#results {
+  display: block;
+  width: 500px;
+  float: left;
+}
+
+div#details {
+  /*background: red;*/
+  height: 100px;
+  margin-left: 502px;
+}
+
+li.movie {
+  margin-top: 10px;
+  height: 50px;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 3px;
+  background: pink;
 }
