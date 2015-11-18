@@ -136,3 +136,26 @@ li.movie {
   border-radius: 3px;
   background: pink;
 }
+
+div.info {
+  float: left;
+}
+
+a.showDetails {
+  border: 1px solid black;
+  background: grey;
+  padding: 5px 10px;
+  float: right;
+}
+
+a.showDetails:hover {
+  cursor: pointer;
+  background: #ababab;
+  border: 1px solid white;
+  color: white;
+}
+
+li.active {
+  background: #eeaabd;
+  color: white;
+}
