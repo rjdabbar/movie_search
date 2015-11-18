@@ -7,6 +7,7 @@ $.MovieSearch = function (el) {
 
 $.MovieSearch.prototype.bindEvents = function () {
   this.$form.on("submit", this.search.bind(this));
+  this.$el.on("click", "li.movie", this.detailSearch.bind(this))
 };
 
 $.MovieSearch.prototype.search = function (e) {
@@ -30,15 +31,30 @@ $.MovieSearch.prototype.renderResults = function (data) {
 };
 
 $.MovieSearch.prototype.generateResult = function (movie) {
-  var content = $("<div>").html(movie["Title"]);
-  var $li = $("<li>").addClass("movie").append(content)
-  this.$ul.prepend($li);
+  var $content = $("<div>").html(movie["Title"]);
+  var $li = $("<li>").data("id", movie["imdbID"]).addClass("movie").append($content)
+  this.$ul.append($li);
 }
 
+$.MovieSearch.prototype.renderDetails = function (data) {
 
 
+}
+
+$.MovieSearch.prototype.detailSearch = function (e) {
+  e.preventDefault();
+  var data = { i: $(e.currentTarget).data("id") }
+
+  $.ajax({
+    method: "GET",
+    url: "http://omdbapi.com/?",
+    data: data,
+    dataType: "json",
+    success: this.renderDetails.bind(this)
+  });
 
 
+}
 
 $.fn.movieSearch = function () {
   return this.each(function () {
