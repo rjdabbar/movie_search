@@ -1,6 +1,6 @@
 /*RESET, DEFAULTS, AND CLEARFIX*/
 /*******************************/
-html, body, h1, h2, h3, p, div, label, form,
+html, body, h1, h2, h3, h4, p, div, label, form,
 ul, li, button, a, section, nav, main, input, textarea {
   border: 0;
   margin: 0;
@@ -109,16 +109,22 @@ div#results {
   display: block;
   width: 500px;
   float: left;
+  padding: 0 10px 10px 20px;
 }
 
 div#details {
-  /*background: red;*/
+  margin-left: 10px;
   height: 100px;
   margin-left: 502px;
 }
 
 ul#results {
-  padding-left: 20px;
+
+}
+
+img.poster {
+  width: 300px;
+  height: auto;
 }
 
 li.movie {
