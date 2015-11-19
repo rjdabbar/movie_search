@@ -8,8 +8,9 @@ $.MovieSearch = function (el) {
 
 $.MovieSearch.prototype.bindEvents = function () {
   this.$form.on("submit", this.search.bind(this));
-  this.$el.on("click", "a.showDetails", this.detailSearch.bind(this))
-  this.$el.on("click", "a.showDetails", this.toggleActive.bind(this))
+  this.$el.on("click", "a.showDetails", this.detailSearch.bind(this));
+  this.$el.on("click", "a.showDetails", this.toggleActive.bind(this));
+  this.$el.on("click", "a.addFavorite", this.favorite.bind(this));
 };
 
 $.MovieSearch.prototype.toggleActive = function (e) {
@@ -45,9 +46,11 @@ $.MovieSearch.prototype.generateResult = function (movie) {
   var $content = $("<div>")
                   .addClass("info")
                   .html("<h3>" + title + "</h3><h4>Released in: " + year + "</h4>");
-  var $detailLink = $("<a>").addClass("showDetails").html("Details")
-  var $li = $("<li>").data("id", movie["imdbID"]).addClass("movie group").append($content)
-  $li.append($detailLink)
+  var $detailLink = $("<a>").addClass("showDetails link").html("Details");
+  var $favoriteLink = $("<a>").addClass("addFavorite link").html("Favorite");
+  var $li = $("<li>").data("id", movie["imdbID"]).addClass("movie group").append($content);
+  $li.append($detailLink);
+  $li.append($favoriteLink);
   this.$results.append($li);
 }
 
@@ -75,7 +78,6 @@ $.MovieSearch.prototype.renderDetails = function (movie) {
 };
 
 $.MovieSearch.prototype.detailSearch = function (e) {
-
   e.preventDefault();
   var data = { i: $(e.currentTarget).parent().data("id") }
   $.ajax({
@@ -87,6 +89,25 @@ $.MovieSearch.prototype.detailSearch = function (e) {
   });
 
 }
+
+$.MovieSearch.prototype.favorite = function (e) {
+  e.preventDefault();
+  var title, oid;
+  oid = $(e.currentTarget).parent().data("id");
+  title = $(e.currentTarget).siblings().first().children().first().text()
+  var data = { title: title,
+               oid: oid
+              }
+  $.ajax({
+    method: "POST",
+    url: "/favorites",
+    data: data,
+    dataType: "json",
+    success: console.log("faved")
+  })
+};
+
+
 
 $.fn.movieSearch = function () {
   return this.each(function () {

@@ -44,6 +44,10 @@ h1 {
   font-size: 72px;
 }
 
+a {
+  display: block;
+}
+
 main {
 
 }
@@ -130,29 +134,40 @@ img.poster {
 li.movie {
   padding: 20px;
   margin-top: 10px;
-  height: 50px;
+  height: 80px;
   padding: 20px;
   border: 1px solid black;
   border-radius: 3px;
   background: pink;
+  position: relative;
 }
 
 div.info {
   float: left;
 }
 
-a.showDetails {
+a.link {
   border: 1px solid black;
   background: grey;
   padding: 5px 10px;
-  float: right;
+  position: absolute;
+  bottom: 20px;
+  border-radius: 3px;
 }
 
-a.showDetails:hover {
+a.link:hover {
   cursor: pointer;
   background: #ababab;
   border: 1px solid white;
   color: white;
+}
+
+a.showDetails {
+  right: 20px;
+}
+
+a.addFavorite {
+  left: 20px;
 }
 
 li.active {
