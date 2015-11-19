@@ -1,5 +1,7 @@
 # Movie Search
 
+Live link : rj-movie-search.herokuapp.com
+
 This app uses a small Sinatra backend with JavaScript/jQuery on the front to search OMDBapi for movie information. Favorited movies are stored in JSON file.
 
 
