@@ -4,7 +4,7 @@ $.FavoriteMovies = function (el) {
   this.getMovies();
 };
 
-
+// Fetches all favorited movies from data.json
 $.FavoriteMovies.prototype.getMovies = function (e) {
   $.ajax({
     method: "GET",
@@ -15,6 +15,7 @@ $.FavoriteMovies.prototype.getMovies = function (e) {
   });
 };
 
+// Renders favorite movies based on the search results
 $.FavoriteMovies.prototype.renderFavorites = function (favorites) {
   for (var movie in favorites) {
     if (favorites.hasOwnProperty(movie)) {
@@ -23,6 +24,7 @@ $.FavoriteMovies.prototype.renderFavorites = function (favorites) {
   }
 };
 
+// Generates the HTML and adds it to the view
 $.FavoriteMovies.prototype.generateFavorite = function (title, poster) {
   var $content = $("<div>").addClass("content")
   var $title = $("<h4>").html(title)
@@ -33,12 +35,14 @@ $.FavoriteMovies.prototype.generateFavorite = function (title, poster) {
   this.$favorites.append($li);
 };
 
+// Defines a function on the $ namespace that returns a new FavoriteMovies object
 $.fn.favoriteMovies = function () {
   return this.each(function () {
     new $.FavoriteMovies(this)
   });
 };
 
+// This function runs on page load and sets up the FavoriteMovies object for use. 
 $(function () {
   $("main").favoriteMovies();
 });

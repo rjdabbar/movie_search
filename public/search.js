@@ -6,6 +6,7 @@ $.MovieSearch = function (el) {
   this.bindEvents();
 }
 
+// Binds all the events that we expect to happen
 $.MovieSearch.prototype.bindEvents = function () {
   this.$form.on("submit", this.search.bind(this));
   this.$el.on("click", "a.showDetails", this.detailSearch.bind(this));
@@ -13,12 +14,14 @@ $.MovieSearch.prototype.bindEvents = function () {
   this.$el.on("click", "a.addFavorite", this.favorite.bind(this));
 };
 
+// Toggles the "active" class on the given list item that is being displayed
 $.MovieSearch.prototype.toggleActive = function (e) {
   e.preventDefault();
   this.$results.children().removeClass("active");
   $(e.currentTarget).parent().addClass("active");
 };
 
+// Handles the AJAX request to search the omdbAPI
 $.MovieSearch.prototype.search = function (e) {
   e.preventDefault();
 
@@ -33,12 +36,14 @@ $.MovieSearch.prototype.search = function (e) {
   });
 };
 
+// Renders the results of the search
 $.MovieSearch.prototype.renderResults = function (data) {
   this.$results.empty();
   var results = data["Search"];
   results.forEach(this.generateResult.bind(this));
 };
 
+// Generates the HTML and adds to the view for each search result
 $.MovieSearch.prototype.generateResult = function (movie) {
   var title, year;
   title = movie["Title"];
@@ -59,6 +64,7 @@ $.MovieSearch.prototype.generateResult = function (movie) {
   this.$results.append($li);
 }
 
+// Renders the details of a selected movie
 $.MovieSearch.prototype.renderDetails = function (movie) {
   this.$details.empty();
   var $ul = $("<ul>").addClass("details");
@@ -82,6 +88,7 @@ $.MovieSearch.prototype.renderDetails = function (movie) {
   this.$details.append($ul);
 };
 
+// Searches omdbAPI for a specific film by title
 $.MovieSearch.prototype.detailSearch = function (e) {
   e.preventDefault();
   var data = { i: $(e.currentTarget).parent().data("id") }
@@ -92,9 +99,9 @@ $.MovieSearch.prototype.detailSearch = function (e) {
     dataType: "json",
     success: this.renderDetails.bind(this)
   });
+};
 
-}
-
+// POSTs to our data.json file with the movie's information to save
 $.MovieSearch.prototype.favorite = function (e) {
   e.preventDefault();
   var title, oid, poster;
@@ -114,12 +121,14 @@ $.MovieSearch.prototype.favorite = function (e) {
   })
 };
 
+// Defines a function on the $ namespace that returns a new MovieSearch object
 $.fn.movieSearch = function () {
   return this.each(function () {
     new $.MovieSearch(this)
   });
 };
 
+// Calls the above method on page load
 $(function () {
   $("main").movieSearch();
 });
