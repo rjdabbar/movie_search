@@ -48,7 +48,12 @@ $.MovieSearch.prototype.generateResult = function (movie) {
                   .html("<h3>" + title + "</h3><h4>Released in: " + year + "</h4>");
   var $detailLink = $("<a>").addClass("showDetails link").html("Details");
   var $favoriteLink = $("<a>").addClass("addFavorite link").html("Favorite");
-  var $li = $("<li>").data("id", movie["imdbID"]).addClass("movie group").append($content);
+  var $li = $("<li>")
+              .data("id", movie["imdbID"])
+              .data("title", movie["Title"])
+              .data("poster", movie["Poster"])
+              .addClass("movie group")
+              .append($content);
   $li.append($detailLink);
   $li.append($favoriteLink);
   this.$results.append($li);
@@ -92,11 +97,13 @@ $.MovieSearch.prototype.detailSearch = function (e) {
 
 $.MovieSearch.prototype.favorite = function (e) {
   e.preventDefault();
-  var title, oid;
+  var title, oid, poster;
   oid = $(e.currentTarget).parent().data("id");
-  title = $(e.currentTarget).siblings().first().children().first().text()
+  title = $(e.currentTarget).parent().data("title");
+  poster = $(e.currentTarget).parent().data("poster")
   var data = { title: title,
-               oid: oid
+               oid: oid,
+               poster: poster
               }
   $.ajax({
     method: "POST",
@@ -106,8 +113,6 @@ $.MovieSearch.prototype.favorite = function (e) {
     success: console.log("faved")
   })
 };
-
-
 
 $.fn.movieSearch = function () {
   return this.each(function () {

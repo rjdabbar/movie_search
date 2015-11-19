@@ -1,0 +1,20 @@
+h1#favorites {
+  text-align: center;
+}
+
+li.favorite {
+  display: block;
+  float: left;
+  width: 198px;
+  margin: 35px 0 0 25px;
+  height: 298px;
+}
+
+a#favorites {
+  margin-top: 100px;
+  text-align: center;
+}
+
+div.content > h4 {
+  height: 36px;
+}
